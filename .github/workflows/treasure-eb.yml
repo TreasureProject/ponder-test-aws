@@ -1,11 +1,11 @@
-name: Deploy Brazil to Treasure Environments
+name: Deploy ponder to Treasure Environments
 on:
   push:
     branches:
       - main
       - terraform
     tags:
-      - brazil-v*
+      - ponder-v*
 
 permissions:
   id-token: write
@@ -48,7 +48,7 @@ jobs:
           aws_access_key: ${{ steps.aws_creds.outputs.aws-access-key-id }}
           aws_secret_key: ${{ steps.aws_creds.outputs.aws-secret-access-key }}
           aws_session_token: ${{ steps.aws_creds.outputs.aws-session-token }}
-          application_name: brazil
+          application_name: ponder
           use_existing_version_if_available: true
           environment_name: ${{ vars.EB_ENVIRONMENT }}
           version_label: ${{ steps.ghsha.outputs.sha_short }}
