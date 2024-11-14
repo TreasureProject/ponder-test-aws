@@ -6,5 +6,5 @@ variable "prefix" {
 variable "github_project" {
   type        = string
   description = "githubOrg/GithubProject"
-  default     = "TreasureProject/tdk-js"
+  default     = "TreasureProject/ponder-test-aws"
 }

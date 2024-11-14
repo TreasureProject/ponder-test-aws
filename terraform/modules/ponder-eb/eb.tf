@@ -59,6 +59,7 @@ module "elastic_beanstalk_environment" {
   env_vars = merge(var.env_vars,
     {
       "PONDER_RPC_URL_42161" = local.ponder_rpc_url
+      "DATABASE_URL"         = local.aurora_connection_string
   })
 
   rolling_update_enabled  = var.rolling_update_enabled

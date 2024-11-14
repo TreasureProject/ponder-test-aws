@@ -261,3 +261,8 @@ variable "ponder_secret_name" {
   type        = string
   default     = "ponderEnv"
 }
+
+variable "aurora_secret_name" {
+  description = "Aurora Secret Name"
+  type        = string
+}

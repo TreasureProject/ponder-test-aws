@@ -4,8 +4,8 @@ locals {
   account_id = data.aws_caller_identity.current.account_id
 }
 
-resource "aws_iam_role" "bidgrid_github_oidc" {
-  name               = "${var.prefix}-bidgrid-api-github-actions"
+resource "aws_iam_role" "ponder_github_oidc" {
+  name               = "${var.prefix}-github-actions"
   path               = "/"
   assume_role_policy = <<EOF
     {
@@ -36,12 +36,12 @@ resource "aws_iam_role" "bidgrid_github_oidc" {
 }
 
 resource "aws_iam_role_policy_attachment" "eb_managed_update" {
-  role       = aws_iam_role.bidgrid_github_oidc.name
+  role       = aws_iam_role.ponder_github_oidc.name
   policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy"
 }
 
 resource "aws_iam_role_policy_attachment" "eb_web_tier" {
-  role       = aws_iam_role.bidgrid_github_oidc.name
+  role       = aws_iam_role.ponder_github_oidc.name
   policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier"
 }
 
@@ -49,7 +49,8 @@ resource "aws_iam_role_policy_attachment" "eb_web_tier" {
 data "aws_iam_policy_document" "github_oidc" {
   statement {
     effect = "Allow"
-    actions = ["ecr:CompleteLayerUpload",
+    actions = [
+      "ecr:CompleteLayerUpload",
       "ecr:GetAuthorizationToken",
       "ecr:UploadLayerPart",
       "ecr:InitiateLayerUpload",

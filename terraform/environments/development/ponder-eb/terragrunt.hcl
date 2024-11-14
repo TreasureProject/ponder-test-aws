@@ -21,5 +21,9 @@ inputs = {
   cloudflare_secret_name       = local.environment_vars.locals.cloudflare_secret_name
   cloudflare_zone_id           = local.environment_vars.locals.cloudflare_zone_id
   dns_name                     = local.environment_vars.locals.dns_name
+  aurora_secret_name           = dependency.aurora.outputs.aurora_secret_name
 }
 
+dependency "aurora" {
+  config_path = "../ponder-aurora"
+}
